@@ -11,15 +11,15 @@ ssize_t helper(int n)
 	char digit_char;
 	ssize_t total_bytes_written = 0;
 
+	if (n < 0)
+	{
+		n = -n;
+	}
 	digit = n % 10;
 	if (n == 0)
 	{
 		return (total_bytes_written);
 	}
-
-	if (digit < 0)
-		digit = -digit;
-
 	total_bytes_written += helper(n / 10);
 	digit_char = digit + '0';
 	total_bytes_written += write(STDOUT_FILENO, &digit_char, 1);
