@@ -12,6 +12,7 @@ This repository contains our implementation of the `printf` function in C as par
 
 ## Usage
 
+
 To use our `printf` function, include the header file `main.h` in your C source code and call the `_printf` function with the desired format string and arguments. For example:
 
 ```c
@@ -22,7 +23,7 @@ int main(void)
     _printf("Hello, %s!\n", "World");
     return (0);
 }
-
+```
 
 This code will print the string “Hello, World!” followed by a newline character.
 
