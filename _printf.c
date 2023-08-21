@@ -9,6 +9,7 @@ int _printf(const char *format, ...)
 {
 	va_list ap;
 	int i, len = 0;
+	char *str;
 
 	if (format == NULL)
 		return (-1);
@@ -18,30 +19,34 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			len += write(1, &format[i], 1);
+			len += write(STDOUT_FILENO, &format[i], 1);
 			continue;
 		}
 		i++;
 		switch (format[i])
 		{
-			case 'c':
-				len += print_c((char)va_arg(ap, int));
-				break;
 			case 's':
-				len += print_s(va_arg(ap, char *));
+				str = va_arg(ap, char *);
+				if (str == NULL)
+					len += write(STDOUT_FILENO, "(null)", 6);
+				else
+					len += print_s(str);
+					
+
+				break;
+			case 'c':
+				len += (char)print_c(va_arg(ap, int));
 				break;
 			case 'd':
-				len += print_int(va_arg(ap, int));
-				break;
 			case 'i':
 				len += print_int(va_arg(ap, int));
 				break;
 			case '%':
-				len += write(1, "%", 1);
+				len += write(STDOUT_FILENO, "%", 1);
 				break;
 			default:
-				len += write(1, "%", 1);
-				len += write(1, &format[i], 1);
+				len += write(STDOUT_FILENO, "%%", 1);
+				len += write(STDOUT_FILENO, &format[i], 1);
 				break;
 		}
 	}
