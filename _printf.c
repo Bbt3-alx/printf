@@ -20,11 +20,6 @@ int _printf(const char *format, ...)
 			continue;
 		}
 		i++;
-		if (format[i] == '\0')
-		{
-			write(1, "%", 1);
-			return (-1);
-		}
 		switch (format[i])
 		{
 			case 'c':
