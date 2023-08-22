@@ -12,5 +12,6 @@ int print_c(char c);
 int print_s(char *s);
 ssize_t print_int(int n);
 ssize_t helper(int n);
+int print_b(int decimal);
 
 #endif /* MAIN_H */

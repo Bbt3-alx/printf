@@ -32,6 +32,9 @@ int _printf(const char *format, ...)
 			case 'i':
 				len += print_int(va_arg(ap, int));
 				break;
+			case 'b':
+				len += print_b(va_arg(ap, int));
+				break;
 			case '%':
 				len += write(1, "%", 1);
 				break;
